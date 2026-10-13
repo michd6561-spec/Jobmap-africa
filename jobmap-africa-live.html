@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JobMap Africa – Find jobs around you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--navy:#0b1f4d;--blue:#1d4ed8;--bg:#fff;--soft:#f3f6fc;--line:#dbe3f2;--mut:#51607f;--amber:#b45309}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#e8eeff;--blue:#7ea2ff;--bg:#0c1224;--soft:#131b33;--line:#26325a;--mut:#a7b3d6;--amber:#fbbf24}}
+:root[data-theme="dark"]{--navy:#e8eeff;--blue:#7ea2ff;--bg:#0c1224;--soft:#131b33;--line:#26325a;--mut:#a7b3d6;--amber:#fbbf24}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--navy);font:16px/1.5 'Plus Jakarta Sans',system-ui,sans-serif}
+a{color:var(--blue)}h1,h2,h3{line-height:1.15;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+nav{display:flex;align-items:center;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:1200;flex-wrap:wrap}
+nav .logo{font-weight:800;font-size:19px;color:var(--navy);text-decoration:none;margin-right:auto}nav .logo b{color:var(--blue)}
+nav a.l{color:var(--navy);text-decoration:none;font-weight:600;font-size:14px;padding:6px 4px}nav a.l:hover{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:600 15px inherit;font-family:inherit;text-decoration:none;cursor:pointer;min-height:44px}
+:root:not([data-theme="light"]) .btn{color:#0c1224}.btn.sm{padding:7px 12px;min-height:36px;font-size:14px}.btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.demo{background:#fff7e6;color:#7a4a00;font-size:13px;padding:7px 18px;text-align:center;border-bottom:1px solid #f1d8a4}
+.hero{padding:44px 0 36px;background:var(--soft)}.hero h1{font-size:clamp(30px,6vw,52px);font-weight:800;max-width:15em;letter-spacing:-.02em}
+.hero p{color:var(--mut);font-size:18px;max-width:34em;margin:14px 0 24px}
+.sf{display:grid;grid-template-columns:1fr 200px auto;gap:10px;background:var(--bg);padding:10px;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 18px rgba(11,31,77,.08);max-width:760px}
+input,select,textarea{font:inherit;color:var(--navy);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
+label{font-weight:600;font-size:14px;display:block;margin-bottom:4px}
+.sec{padding:44px 0}.sec h2{font-size:28px;margin-bottom:18px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--bg)}.tile h3{font-size:17px;margin-bottom:6px}.tile p{margin:0;color:var(--mut);font-size:15px}
+.trust{background:var(--navy);color:#fff;border-radius:20px;padding:28px}:root:not([data-theme="light"]) .trust{background:var(--soft);color:var(--navy)}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mut);font-size:14px}footer .wrap{display:flex;gap:18px;flex-wrap:wrap}
+.fb{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line);align-items:center}.fb input{flex:1 1 200px;width:auto}.fb select{width:auto;flex:0 1 150px}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}.seg button{border:0;background:var(--bg);color:var(--navy);padding:10px 12px;font:600 14px inherit;font-family:inherit;cursor:pointer;min-height:44px}.seg button[aria-pressed=true]{background:var(--blue);color:#fff}
+.ws{display:grid;grid-template-columns:400px 1fr;height:calc(100vh - 170px);min-height:480px}
+.list{overflow:auto;padding:12px;background:var(--soft)}.mapc{position:relative}.map{position:absolute;inset:0;background:#e6ecf7}
+.card{background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer}.card.on{border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,78,216,.18)}
+.card h3{font-size:16px}.card .m{color:var(--mut);font-size:13.5px;margin:3px 0}.card .f{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.tag{display:inline-block;font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;background:var(--soft);border:1px solid var(--line);margin:4px 4px 0 0}.tag.w{background:#fff7e6;color:#7a4a00;border-color:#f1d8a4}
+.tog{display:none}.note{position:absolute;left:8px;bottom:30px;z-index:900;background:#fff;color:#333;font-size:12px;padding:6px 9px;border-radius:8px;max-width:240px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.pin{display:block;width:22px;height:22px;margin:3px;background:#1d4ed8;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.4)}.sel .pin{background:#f59e0b;transform:rotate(-45deg) scale(1.35)}
+.pg{padding:28px 0 56px;max-width:760px}.pg h1{font-size:30px;margin-bottom:8px}.box{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--soft);margin:16px 0}
+.fld{margin-bottom:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.err{color:#b91c1c;font-size:14px;margin-top:4px}.pm{height:300px;border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}
+dl{display:grid;grid-template-columns:150px 1fr;gap:8px 14px;margin:0}dt{color:var(--mut);font-size:14px}dd{margin:0;font-weight:600}
+@media(max-width:820px){.sf{grid-template-columns:1fr}.g3{grid-template-columns:1fr}.ws{grid-template-columns:1fr;height:calc(100vh - 230px)}.tog{display:flex;margin-left:auto}.hide{display:none}.row{grid-template-columns:1fr}dl{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Leaflet core (inlined: external CSS is blocked on published pages) */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-layer,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden;touch-action:none;font:13px/1.4 inherit;-webkit-tap-highlight-color:transparent}
+.leaflet-tile,.leaflet-marker-icon{user-select:none;-webkit-user-drag:none}.leaflet-tile{visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-zoom-anim .leaflet-zoom-animated{transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{transition:none}
+.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-marker-pane{z-index:600}.leaflet-popup-pane{z-index:700}.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-right{right:0}.leaflet-right .leaflet-control{float:right}
+.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-bar{border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)}.leaflet-bar a{display:block;width:40px;height:40px;line-height:40px;text-align:center;background:#fff;color:#0b1f4d;text-decoration:none;font-size:20px;font-weight:700;border-bottom:1px solid #ddd}
+.leaflet-control-attribution{background:rgba(255,255,255,.85);padding:1px 6px;font-size:11px;color:#333}.leaflet-control-attribution a{color:#0b4bd8}
+.leaflet-popup{position:absolute;margin-bottom:22px}.leaflet-popup-content-wrapper{background:#fff;color:#0b1f4d;border-radius:12px;box-shadow:0 3px 14px rgba(0,0,0,.3);text-align:left}.leaflet-popup-content{margin:11px 16px;line-height:1.4}
+.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:16px;height:16px;margin:-9px auto 0;transform:rotate(45deg);background:#fff}
+.leaflet-popup-close-button{position:absolute;top:0;right:0;padding:4px 9px;font:20px sans-serif;color:#555;text-decoration:none}
+</style></head>
+<body><div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const {useState,useEffect,useRef,useMemo,useContext,createContext}=React,h=React.createElement;
+/* ===== CONFIG: public (publishable) key only. Never put a service-role key here. ===== */
+const CFG={url:'https://mlgdtmzacluleyxdhziu.supabase.co',key:'sb_publishable_MluWl0kwY6FOIDypEIDhUA_8oz_YPkA'};
+const sb=supabase.createClient(CFG.url,CFG.key);
+const AREAS={ikeja:{name:'Ikeja',c:[6.6018,3.3515],box:[6.575,6.635,3.32,3.385]},ajao_estate:{name:'Ajao Estate',c:[6.5486,3.3166],box:[6.532,6.568,3.295,3.34]}};
+const CATS=['Admin','Retail','Creative','Logistics','Hospitality','Customer Service'];
+const TL={full_time:'Full-time',part_time:'Part-time',contract:'Contract',internship:'Internship',entry_level:'Entry-level'},AR={on_site:'On-site',hybrid:'Hybrid',remote:'Remote'};
+const PERS=['hour','day','week','month','year','task'];
+const OSM={u:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',a:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fd=d=>d?new Date(d).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}):'';
+const areaOf=(la,ln)=>Object.keys(AREAS).find(k=>{const b=AREAS[k].box;return la>=b[0]&&la<=b[1]&&ln>=b[2]&&ln<=b[3]});
+const naira=n=>'₦'+Number(n).toLocaleString('en-NG');
+const sal=j=>j.salary_min==null&&j.salary_max==null?'Salary not disclosed':(j.salary_min!=null&&j.salary_max!=null&&j.salary_min!==j.salary_max?naira(j.salary_min)+' – '+naira(j.salary_max):naira(j.salary_min!=null?j.salary_min:j.salary_max))+' / '+j.salary_period;
+const hasPin=j=>j.work_arrangement!=='remote'&&j.latitude!=null&&j.longitude!=null;
+const ename=j=>(j.employers&&j.employers.business_name)||'Employer';
+const Auth=createContext({});
+function useHash(){const[s,set]=useState(location.hash||'#/');useEffect(()=>{const f=()=>{set(location.hash||'#/');scrollTo(0,0)};addEventListener('hashchange',f);return()=>removeEventListener('hashchange',f)},[]);return s}
+
+function AuthProvider({children}){const[s,setS]=useState(undefined),[roles,setR]=useState([]),[emp,setE]=useState(null);
+useEffect(()=>{sb.auth.getSession().then(({data})=>setS(data.session));const{data:l}=sb.auth.onAuthStateChange((_e,x)=>setS(x));return()=>l.subscription.unsubscribe()},[]);
+const load=async()=>{if(!s){setR([]);setE(null);return}
+const a=await sb.from('user_roles').select('role').eq('user_id',s.user.id);setR((a.data||[]).map(r=>r.role));
+const b=await sb.from('employers').select('*').eq('owner_id',s.user.id).maybeSingle();setE(b.data)};
+useEffect(()=>{load()},[s&&s.user.id]);
+return h(Auth.Provider,{value:{user:s&&s.user,roles,emp,reload:load,ready:s!==undefined}},children)}
+
+function Nav(){const{user}=useContext(Auth);return h('nav',null,h('a',{className:'logo',href:'#/'},'JobMap ',h('b',null,'Africa')),
+h('a',{className:'l',href:'#/jobs'},'Find Jobs'),h('a',{className:'l',href:'#/post-job'},'Post a Job'),user&&h('a',{className:'l',href:'#/dashboard'},'Dashboard'),h('a',{className:'l',href:'#/about'},'About'),
+user?h('button',{className:'btn sm ghost',onClick:()=>sb.auth.signOut().then(()=>location.hash='#/')},'Sign out'):h('a',{className:'btn sm ghost',href:'#/signin'},'Sign In'))}
+function Footer(){return h('footer',null,h('div',{className:'wrap'},h('span',null,'© JobMap Africa · Pilot: Ikeja and Ajao Estate, Lagos'),h('a',{href:'mailto:hello@jobmap.africa'},'Contact'),h('a',{href:'#/privacy'},'Privacy'),h('a',{href:'#/terms'},'Terms')))}
+const Msg=({m,ok})=>m?h('p',{role:ok?'status':'alert',className:ok?'':'err'},m):null;
+const Gate=()=>h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Sign in required'),h('p',null,'Create an account or sign in to continue.'),h('a',{className:'btn',href:'#/signin'},'Sign in or create account')));
+const Stub=({t})=>h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,t),h('p',null,'Placeholder page for the pilot. Final text will be added before launch.')));
+
+function Home(){const[q,setQ]=useState(''),[a,setA]=useState('all');
+return h('div',null,h('section',{className:'hero'},h('div',{className:'wrap'},h('h1',null,'Your next opportunity could be around the corner.'),
+h('p',null,'Discover jobs, internships and local opportunities around Ikeja and Ajao Estate.'),
+h('form',{className:'sf',role:'search',onSubmit:e=>{e.preventDefault();location.hash='#/jobs?q='+encodeURIComponent(q)+'&area='+a}},
+h('input',{'aria-label':'Search jobs',value:q,onChange:e=>setQ(e.target.value),placeholder:'Job title, skill or employer'}),
+h('select',{'aria-label':'Area',value:a,onChange:e=>setA(e.target.value)},h('option',{value:'all'},'Both areas'),h('option',{value:'ikeja'},'Ikeja'),h('option',{value:'ajao_estate'},'Ajao Estate')),
+h('button',{className:'btn',type:'submit'},'Search jobs')))),
+h('section',{className:'sec'},h('div',{className:'wrap'},h('h2',null,'How it works'),h('div',{className:'g3'},[['Pick your area','Choose Ikeja or Ajao Estate. No GPS needed.'],['Browse the map','Tap a pin or a card to see the job and where it is.'],['Apply directly','Create an account, then apply to the employer.']].map(([t,d],i)=>h('div',{className:'tile',key:i},h('h3',null,(i+1)+'. '+t),h('p',null,d)))))),
+h('section',{className:'sec',id:'about'},h('div',{className:'wrap'},h('div',{className:'trust'},h('h2',null,'Trust and safety'),
+h('p',{style:{maxWidth:'40em'}},'Every listing is reviewed by an administrator before it goes live. Verified employers get a badge. You can report any listing. Never pay money to get a job.'),h('a',{className:'btn',href:'#/jobs',style:{background:'#fff',color:'#0b1f4d'}},'Explore jobs')))))}
+
+function SignIn(){const[mode,setMode]=useState('in'),[f,setF]=useState({email:'',pw:'',name:''}),[m,setM]=useState(''),[b,setB]=useState(false);
+const s=k=>e=>setF({...f,[k]:e.target.value});
+const go=async e=>{e.preventDefault();setM('');if(f.pw.length<8)return setM('Password must be at least 8 characters.');setB(true);
+const r=mode==='in'?await sb.auth.signInWithPassword({email:f.email,password:f.pw}):await sb.auth.signUp({email:f.email,password:f.pw,options:{data:{full_name:f.name}}});setB(false);
+if(r.error)return setM(r.error.message);if(mode==='up'&&!r.data.session)return setM('Check your email to confirm your account, then sign in.');location.hash='#/dashboard'};
+const fl=(k,l,t)=>h('div',{className:'fld'},h('label',{htmlFor:k},l),h('input',{id:k,type:t||'text',value:f[k],onChange:s(k),required:true,autoComplete:k==='pw'?(mode==='in'?'current-password':'new-password'):k}));
+return h('div',{className:'wrap'},h('form',{className:'pg',onSubmit:go},h('h1',null,mode==='in'?'Sign in':'Create account'),mode==='up'&&fl('name','Full name'),fl('email','Email','email'),fl('pw','Password (8+ characters)','password'),
+h(Msg,{m,ok:m.startsWith('Check')}),h('button',{className:'btn',disabled:b,type:'submit'},b?'Please wait…':mode==='in'?'Sign in':'Create account'),
+h('p',null,mode==='in'?'New here? ':'Have an account? ',h('a',{href:'#/signin',onClick:e=>{e.preventDefault();setMode(mode==='in'?'up':'in');setM('')}},mode==='in'?'Create an account':'Sign in'))))}
+
+function useJobs(){const[st,set]=useState({loading:true,err:null,jobs:[]});
+const run=()=>{set(s=>({...s,loading:true,err:null}));sb.from('jobs').select('*,employers(business_name,verification_status)').eq('approval_status','approved').eq('status','open').gt('expires_at',new Date().toISOString()).order('posted_at',{ascending:false})
+.then(({data,error})=>set({loading:false,err:error?error.message:null,jobs:data||[]}),e=>set({loading:false,err:String(e),jobs:[]}))};
+useEffect(run,[]);return[st,run]}
+
+function Card({j,on,onSel}){return h('article',{className:'card'+(on?' on':''),id:'c-'+j.id,tabIndex:0,'aria-current':on,onClick:()=>onSel(j.id),onKeyDown:e=>{if(e.target===e.currentTarget&&(e.key==='Enter'||e.key===' ')){e.preventDefault();onSel(j.id)}}},
+h('h3',null,j.title),h('div',{className:'m'},ename(j)+' · '+(j.area?AREAS[j.area].name:'Remote')),
+h('div',null,h('span',{className:'tag'},TL[j.employment_type]),h('span',{className:'tag'},AR[j.work_arrangement]),j.is_sample&&h('span',{className:'tag w'},'Sample listing')),
+h('div',{className:'m'},sal(j)+' · Posted '+fd(j.posted_at)),
+h('div',{className:'f'},h('span',{className:'m'},j.employers&&j.employers.verification_status==='verified'?'✓ Verified employer':'Employer not verified'),h('a',{className:'btn sm',href:'#/jobs/'+j.id,onClick:e=>e.stopPropagation()},'View Job')))}
+
+function MapView({jobs,sel,onSel,area,show}){const el=useRef(),map=useRef(),mk=useRef({}),[te,setTE]=useState(false);
+useEffect(()=>{const m=L.map(el.current,{center:[6.575,3.334],zoom:13});const t=L.tileLayer(OSM.u,{maxZoom:19,attribution:OSM.a}).addTo(m);let n=0;t.on('tileerror',()=>{if(++n>2)setTE(true)});map.current=m;return()=>m.remove()},[]);
+useEffect(()=>{const m=map.current;Object.values(mk.current).forEach(x=>x.remove());mk.current={};
+jobs.filter(hasPin).forEach(j=>{const k=L.marker([j.latitude,j.longitude],{title:j.title+' ('+ename(j)+')',icon:L.divIcon({className:'',html:'<span class="pin"></span>',iconSize:[28,28],iconAnchor:[14,28],popupAnchor:[0,-26]})}).addTo(m);
+k.bindPopup('<strong>'+esc(j.title)+'</strong><br>'+esc(ename(j))+'<br>'+esc(TL[j.employment_type])+(j.is_sample?'<br><em>Sample listing</em>':'')+'<br><a href="#/jobs/'+j.id+'">View Job</a>');k.on('click',()=>onSel(j.id));mk.current[j.id]=k})},[jobs]);
+useEffect(()=>{Object.entries(mk.current).forEach(([id,k])=>{const e=k.getElement();e&&e.classList.toggle('sel',id===sel)});const k=mk.current[sel];if(k){map.current.panTo(k.getLatLng());k.openPopup()}else map.current.closePopup()},[sel,jobs]);
+useEffect(()=>{const m=map.current;area==='all'?m.flyTo([6.575,3.334],13):m.flyTo(AREAS[area].c,15)},[area]);
+useEffect(()=>{setTimeout(()=>map.current.invalidateSize(),60)},[show]);
+return h('div',{className:'map',ref:el,role:'application','aria-label':'Map of job locations'},te&&h('div',{className:'note'},'Map tiles could not load. Pins and the list still work.'))}
+
+function Jobs({p}){const[st,reload]=useJobs();
+const[q,setQ]=useState(p.get('q')||''),[area,setArea]=useState(p.get('area')||'all'),[cat,setCat]=useState(''),[type,setType]=useState(''),[rem,setRem]=useState(false),[sel,setSel]=useState(null),[view,setView]=useState('list');
+const list=useMemo(()=>st.jobs.filter(j=>(rem||j.work_arrangement!=='remote')&&(area==='all'||j.area===area)&&(!cat||j.category===cat)&&(!type||j.employment_type===type)&&(!q||(j.title+' '+ename(j)+' '+j.category+' '+j.description+' '+(j.requirements||'')).toLowerCase().includes(q.toLowerCase()))),[st.jobs,q,area,cat,type,rem]);
+useEffect(()=>{if(sel&&!list.find(j=>j.id===sel))setSel(null)},[list]);
+const pick=id=>{setSel(id);const c=document.getElementById('c-'+id);c&&c.scrollIntoView({block:'nearest',behavior:'smooth'})};
+if(typeof L==='undefined')return h('div',{className:'pg'},h('h1',null,'Map could not load'),h('button',{className:'btn',onClick:()=>location.reload()},'Reload'));
+const clear=()=>{setQ('');setArea('all');setCat('');setType('')};
+return h('div',null,st.jobs.some(j=>j.is_sample)&&h('div',{className:'demo',role:'note'},'Sample listings are shown while this site is in development. They are not real vacancies.'),
+h('div',{className:'fb'},h('input',{'aria-label':'Search by job title, skill or employer',placeholder:'Search title, skill or employer',value:q,onChange:e=>setQ(e.target.value)}),
+h('div',{className:'seg',role:'group','aria-label':'Pilot area'},[['all','Both'],['ikeja','Ikeja'],['ajao_estate','Ajao Estate']].map(([v,l])=>h('button',{key:v,'aria-pressed':area===v,onClick:()=>setArea(v)},l))),
+h('select',{'aria-label':'Category',value:cat,onChange:e=>setCat(e.target.value)},h('option',{value:''},'All categories'),CATS.map(c=>h('option',{key:c},c))),
+h('select',{'aria-label':'Job type',value:type,onChange:e=>setType(e.target.value)},h('option',{value:''},'All types'),Object.entries(TL).map(([k,v])=>h('option',{key:k,value:k},v))),
+h('label',{style:{display:'flex',gap:6,alignItems:'center',margin:0}},h('input',{type:'checkbox',style:{width:20,minHeight:20},checked:rem,onChange:e=>setRem(e.target.checked)}),'Include remote jobs (list only)'),
+h('div',{className:'seg tog',role:'group','aria-label':'View'},['list','map'].map(v=>h('button',{key:v,'aria-pressed':view===v,onClick:()=>setView(v)},v==='list'?'List':'Map')))),
+h('div',{className:'ws'},h('div',{className:'list'+(view==='map'?' hide':''),'aria-live':'polite'},
+st.loading?h('p',null,'Loading jobs…'):st.err?h('div',{className:'box',role:'alert'},h('h3',null,'Could not load jobs'),h('p',null,'The job database could not be reached. Check your connection and try again.'),h('button',{className:'btn sm',onClick:reload},'Retry')):
+list.length===0?h('div',{className:'box'},h('h3',null,st.jobs.length?'No jobs match':'No jobs yet'),h('p',null,st.jobs.length?'Try another area, category or search term.':'No approved vacancies are open right now. Check back soon.'),st.jobs.length>0&&h('button',{className:'btn sm',onClick:clear},'Clear filters')):
+[h('p',{key:'n',className:'m',style:{margin:'0 0 8px'}},list.length+' job'+(list.length>1?'s':'')+' shown'),...list.map(j=>h(Card,{key:j.id,j,on:sel===j.id,onSel:pick}))]),
+h('div',{className:'mapc'+(view==='list'?' hide':'')},h(MapView,{jobs:list,sel,onSel:pick,area,show:view}))))}
+const css=document.createElement('style');css.textContent='@media(min-width:821px){.ws .hide{display:block!important}}.r2{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.r2 select{width:auto}';document.head.appendChild(css);
+
+function ApplyForm({job}){const{user}=useContext(Auth);const[f,setF]=useState({name:'',email:user?user.email:'',phone:'',exp:''}),[file,setFile]=useState(null),[m,setM]=useState(''),[done,setDone]=useState(false),[b,setB]=useState(false);
+if(!user)return h('div',{className:'box'},h('p',null,'Sign in to apply for this job.'),h('a',{className:'btn',href:'#/signin'},'Sign in or create account'));
+if(done)return h('div',{className:'box',role:'status'},'Application sent. You can track it on your dashboard.');
+const s=k=>e=>setF({...f,[k]:e.target.value});
+const sub=async e=>{e.preventDefault();setM('');
+if(f.name.trim().length<2)return setM('Enter your full name.');if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email))return setM('Enter a valid email.');
+if(!/^\+?[0-9 ()-]{7,20}$/.test(f.phone))return setM('Enter a valid phone number.');if(f.exp.trim().length<10)return setM('Describe your experience (at least 10 characters).');
+const ok=['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+if(file&&(!ok.includes(file.type)||file.size>5242880))return setM('CV must be a PDF or Word file under 5 MB.');
+setB(true);let path=null;
+if(file){path=user.id+'/'+job.id+'-'+Date.now()+'.'+file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g,'');const u=await sb.storage.from('cvs').upload(path,file,{contentType:file.type});if(u.error){setB(false);return setM('CV upload failed: '+u.error.message)}}
+const r=await sb.from('applications').insert({job_id:job.id,applicant_id:user.id,full_name:f.name.trim(),email:f.email.trim(),phone:f.phone.trim(),experience:f.exp.trim(),cv_path:path});setB(false);
+if(r.error){if(path)await sb.storage.from('cvs').remove([path]);return setM(r.error.code==='23505'?'You have already applied to this job.':'Could not send application: '+r.error.message)}setDone(true)};
+const fl=(k,l,t)=>h('div',{className:'fld'},h('label',{htmlFor:'a'+k},l),t==='ta'?h('textarea',{id:'a'+k,rows:4,value:f[k],onChange:s(k)}):h('input',{id:'a'+k,value:f[k],onChange:s(k)}));
+return h('form',{className:'box',onSubmit:sub,noValidate:true},h('h2',{style:{fontSize:20,marginBottom:12}},'Apply'),fl('name','Full name'),fl('email','Email'),fl('phone','Phone number'),fl('exp','Relevant experience','ta'),
+h('div',{className:'fld'},h('label',{htmlFor:'cv'},'CV (optional, PDF or Word, max 5 MB)'),h('input',{id:'cv',type:'file',accept:'.pdf,.doc,.docx',onChange:e=>setFile(e.target.files[0]||null)})),
+h(Msg,{m}),h('button',{className:'btn',disabled:b,type:'submit'},b?'Sending…':'Send application'))}
+
+function Detail({id}){const{user}=useContext(Auth);const[j,setJ]=useState(undefined),[err,setErr]=useState(null),[rep,setRep]=useState(''),[rm,setRm]=useState('');
+useEffect(()=>{sb.from('jobs').select('*,employers(business_name,verification_status)').eq('id',id).maybeSingle().then(({data,error})=>{if(error)setErr(error.message);setJ(data)})},[id]);
+if(err)return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Something went wrong'),h('p',null,'This job could not be loaded.'),h('a',{className:'btn',href:'#/jobs'},'Back to jobs')));
+if(j===undefined)return h('div',{className:'wrap'},h('p',{className:'pg'},'Loading…'));
+if(!j)return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Job not available'),h('p',null,'This listing does not exist, has expired, or is no longer open.'),h('a',{className:'btn',href:'#/jobs'},'Back to jobs')));
+const live=j.approval_status==='approved'&&j.status==='open'&&new Date(j.expires_at)>new Date();
+const report=async()=>{if(!rep)return;const r=await sb.from('reported_jobs').insert({job_id:j.id,reporter_id:user.id,reason:rep});setRm(r.error?(r.error.code==='23505'?'You already reported this listing.':'Could not send report.'):'Thanks. An administrator will review this listing.')};
+return h('div',{className:'wrap'},h('div',{className:'pg'},h('a',{href:'#/jobs'},'‹ All jobs'),
+!live&&h('div',{className:'box',role:'alert',style:{background:'#fff7e6',color:'#7a4a00'}},'This job is not public: status is '+j.approval_status+' / '+j.status+(new Date(j.expires_at)<=new Date()?' (expired)':'')+'.'),
+j.is_sample&&h('div',{className:'box',style:{background:'#fff7e6',color:'#7a4a00'}},'Sample listing. Not a real vacancy.'),
+h('h1',{style:{marginTop:12}},j.title),h('p',{style:{color:'var(--mut)'}},ename(j)+' · '+(j.area?AREAS[j.area].name:'Remote')),
+h('div',{className:'box'},h('dl',null,[['Employment type',TL[j.employment_type]],['Work arrangement',AR[j.work_arrangement]],['Salary',sal(j)],['Workplace',j.workplace_address||'Remote'],['Posted',fd(j.posted_at)||'Not yet published'],['Apply by',fd(j.expires_at)],['Employer',ename(j)+' · '+(j.employers&&j.employers.verification_status==='verified'?'Verified':'Not verified')]].flatMap(([k,v])=>[h('dt',{key:k},k),h('dd',{key:k+'v'},v)]))),
+h('h2',{style:{fontSize:20,margin:'20px 0 6px'}},'About the role'),h('p',{style:{whiteSpace:'pre-wrap'}},j.description),
+j.requirements&&h('div',null,h('h2',{style:{fontSize:20,margin:'20px 0 6px'}},'Requirements'),h('p',{style:{whiteSpace:'pre-wrap'}},j.requirements)),
+live?h('div',{style:{marginTop:20}},h(ApplyForm,{job:j})):h('p',null,'Applications are closed.'),
+user&&live&&h('div',{className:'r2',style:{marginTop:16}},h('select',{'aria-label':'Report reason',value:rep,onChange:e=>setRep(e.target.value)},h('option',{value:''},'Report this listing…'),[['scam','Looks like a scam'],['fake_employer','Fake employer'],['wrong_location','Wrong location'],['inappropriate','Inappropriate'],['other','Other']].map(([v,l])=>h('option',{key:v,value:v},l))),h('button',{className:'btn sm ghost',onClick:report,disabled:!rep},'Report listing')),
+h(Msg,{m:rm,ok:true})))}
+
+function PinPicker({pos,onPick}){const el=useRef(),m=useRef(),k=useRef();
+useEffect(()=>{const mp=L.map(el.current,{center:[6.575,3.334],zoom:13});L.tileLayer(OSM.u,{maxZoom:19,attribution:OSM.a}).addTo(mp);
+Object.values(AREAS).forEach(a=>L.rectangle([[a.box[0],a.box[2]],[a.box[1],a.box[3]]],{color:'#1d4ed8',weight:1,fillOpacity:.06,interactive:false}).addTo(mp));
+mp.on('click',e=>onPick([+e.latlng.lat.toFixed(5),+e.latlng.lng.toFixed(5)]));m.current=mp;setTimeout(()=>mp.invalidateSize(),60);return()=>mp.remove()},[]);
+useEffect(()=>{k.current&&k.current.remove();if(pos)k.current=L.marker(pos,{icon:L.divIcon({className:'sel',html:'<span class="pin"></span>',iconSize:[28,28],iconAnchor:[14,28]})}).addTo(m.current)},[pos]);
+return h('div',{className:'pm',ref:el,role:'application','aria-label':'Tap the map to place the workplace pin'})}
+
+function Post(){const{user,emp,ready,reload}=useContext(Auth);
+const[f,setF]=useState({title:'',cat:'',desc:'',type:'',arr:'',smin:'',smax:'',per:'month',req:'',addr:'',deadline:''}),[pos,setPos]=useState(null),[e,setE]=useState({}),[done,setDone]=useState(false),[biz,setBiz]=useState(''),[m,setM]=useState(''),[b,setB]=useState(false);
+if(!ready)return h('div',{className:'wrap'},h('p',{className:'pg'},'Loading…'));if(!user)return h(Gate);
+if(!emp)return h('div',{className:'wrap'},h('form',{className:'pg',onSubmit:async ev=>{ev.preventDefault();if(biz.trim().length<2)return setM('Enter your business name.');setB(true);const r=await sb.rpc('become_employer',{p_business_name:biz.trim()});setB(false);if(r.error)return setM(r.error.message);reload()}},
+h('h1',null,'Set up your employer account'),h('p',{style:{color:'var(--mut)'}},'Tell us your business name. Listings are reviewed before going live.'),h('div',{className:'fld'},h('label',{htmlFor:'biz'},'Business name'),h('input',{id:'biz',value:biz,onChange:x=>setBiz(x.target.value)})),h(Msg,{m}),h('button',{className:'btn',disabled:b,type:'submit'},'Continue')));
+const s=k=>ev=>setF({...f,[k]:ev.target.value});
+const fld=(k,l,t,o)=>h('div',{className:'fld'},h('label',{htmlFor:k},l),t==='ta'?h('textarea',{id:k,rows:4,value:f[k],onChange:s(k)}):t==='sel'?h('select',{id:k,value:f[k],onChange:s(k)},h('option',{value:''},'Choose…'),o.map(x=>Array.isArray(x)?h('option',{key:x[0],value:x[0]},x[1]):h('option',{key:x},x))):h('input',{id:k,type:t||'text',value:f[k],onChange:s(k)}),e[k]&&h('div',{className:'err',role:'alert'},e[k]));
+const sub=async ev=>{ev.preventDefault();const er={};['title','cat','desc','type','arr','deadline'].forEach(k=>{if(!f[k].trim())er[k]='Required'});
+if(f.title.trim().length<3)er.title='At least 3 characters';if(f.desc.trim().length<20)er.desc='At least 20 characters';
+const mn=f.smin===''?null:+f.smin,mx=f.smax===''?null:+f.smax;if((mn!=null&&mn<0)||(mx!=null&&mx<0)||(mn!=null&&mx!=null&&mx<mn))er.smin='Check the salary range (max cannot be below min)';
+const remote=f.arr==='remote';if(!remote){if(!f.addr.trim())er.addr='Required for on-site and hybrid jobs';if(!pos)er.pos='Tap the map to place the workplace pin.';else if(!areaOf(pos[0],pos[1]))er.pos='The pin must be inside the Ikeja or Ajao Estate pilot areas (blue boxes).'}
+const exp=f.deadline?new Date(f.deadline+'T23:59:59'):null;if(exp&&exp<=new Date())er.deadline='Deadline must be in the future';
+setE(er);if(Object.keys(er).length)return;setB(true);
+const r=await sb.from('jobs').insert({employer_id:emp.id,title:f.title.trim(),description:f.desc.trim(),category:f.cat,employment_type:f.type,work_arrangement:f.arr,salary_min:mn,salary_max:mx,salary_period:(mn!=null||mx!=null)?f.per:null,requirements:f.req.trim()||null,workplace_address:f.addr.trim()||null,area:remote?null:areaOf(pos[0],pos[1]),latitude:remote?null:pos[0],longitude:remote?null:pos[1],expires_at:exp.toISOString()});setB(false);
+if(r.error)return setM('Could not submit: '+r.error.message);setDone(true)};
+if(done)return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Pending review'),h('div',{className:'box'},h('p',null,'Your listing "'+f.title+'" was submitted. It stays hidden until an administrator approves it.')),h('a',{className:'btn',href:'#/dashboard'},'Go to dashboard')));
+return h('div',{className:'wrap'},h('form',{className:'pg',onSubmit:sub,noValidate:true},h('h1',null,'Post a job'),h('p',{style:{color:'var(--mut)'}},'Posting as '+emp.business_name+'. Physical workplaces must be in Ikeja or Ajao Estate.'),
+fld('title','Job title'),h('div',{className:'row'},fld('cat','Category','sel',CATS),fld('type','Job type','sel',Object.entries(TL))),fld('arr','Work arrangement','sel',Object.entries(AR)),fld('desc','Description','ta'),fld('req','Requirements','ta'),
+h('div',{className:'row'},fld('smin','Salary from (₦, optional)','number'),fld('smax','Salary to (₦, optional)','number')),fld('per','Salary period','sel',PERS),fld('addr','Workplace address (not needed for remote)'),
+f.arr!=='remote'&&h('div',{className:'fld'},h('label',null,'Workplace pin'),h(PinPicker,{pos,onPick:setPos}),pos&&h('p',{className:'m'},'Pin: '+pos[0]+', '+pos[1]),e.pos&&h('div',{className:'err',role:'alert'},e.pos)),
+fld('deadline','Application deadline','date'),h(Msg,{m}),h('button',{className:'btn',disabled:b,type:'submit'},b?'Submitting…':'Submit for review')))}
+
+function Applicants({job}){const[a,setA]=useState(null),[m,setM]=useState('');
+const load=()=>sb.from('applications').select('*').eq('job_id',job.id).order('created_at',{ascending:false}).then(({data,error})=>{setA(data||[]);if(error)setM(error.message)});useEffect(()=>{load()},[]);
+const cv=async p=>{const r=await sb.storage.from('cvs').createSignedUrl(p,60);r.error?setM('Could not open CV'):window.open(r.data.signedUrl,'_blank','noopener')};
+const st=async(id,v)=>{const r=await sb.from('applications').update({status:v}).eq('id',id);r.error?setM(r.error.message):load()};
+if(!a)return h('p',null,'Loading applicants…');
+return h('div',null,h(Msg,{m}),a.length===0?h('p',{className:'m'},'No applications yet.'):a.map(x=>h('div',{key:x.id,className:'box'},h('strong',null,x.full_name),h('div',{className:'m'},x.email+' · '+x.phone+' · '+fd(x.created_at)),h('p',{style:{whiteSpace:'pre-wrap'}},x.experience),
+h('div',{className:'r2'},x.cv_path&&h('button',{className:'btn sm ghost',onClick:()=>cv(x.cv_path)},'Download CV'),h('select',{'aria-label':'Status',value:x.status,onChange:e=>st(x.id,e.target.value)},['submitted','reviewed','shortlisted','rejected'].map(v=>h('option',{key:v},v)))))))}
+
+function JobRow({j,reload}){const[open,setOpen]=useState(false),[ed,setEd]=useState(null),[m,setM]=useState('');
+const n=j.applications&&j.applications[0]?j.applications[0].count:0;
+const close=async()=>{const r=await sb.from('jobs').update({status:'closed'}).eq('id',j.id);r.error?setM(r.error.message):reload()};
+const save=async ev=>{ev.preventDefault();const r=await sb.from('jobs').update({title:ed.title.trim(),description:ed.description.trim(),requirements:ed.requirements.trim()||null}).eq('id',j.id);r.error?setM(r.error.message):(setEd(null),reload())};
+return h('div',{className:'box'},h('strong',null,j.title),h('div',null,h('span',{className:'tag'},'Approval: '+j.approval_status),h('span',{className:'tag'},j.status),j.is_sample&&h('span',{className:'tag w'},'Sample'),h('span',{className:'tag'},n+' application'+(n===1?'':'s'))),
+j.rejection_reason&&h('p',{className:'err'},'Rejected: '+j.rejection_reason),
+h('div',{className:'r2',style:{marginTop:8}},h('button',{className:'btn sm ghost',onClick:()=>setOpen(!open)},open?'Hide applicants':'View applicants'),h('button',{className:'btn sm ghost',onClick:()=>setEd({title:j.title,description:j.description,requirements:j.requirements||''})},'Edit'),j.status==='open'&&h('button',{className:'btn sm ghost',onClick:close},'Close vacancy')),
+ed&&h('form',{onSubmit:save,style:{marginTop:10}},h('p',{className:'m'},'Editing sends the listing back for review before it is public again.'),['title','description','requirements'].map(k=>h('div',{className:'fld',key:k},h('label',{htmlFor:'e'+k},k),k==='title'?h('input',{id:'e'+k,value:ed[k],onChange:e=>setEd({...ed,[k]:e.target.value})}):h('textarea',{id:'e'+k,rows:3,value:ed[k],onChange:e=>setEd({...ed,[k]:e.target.value})}))),h('button',{className:'btn sm',type:'submit'},'Save changes')),
+h(Msg,{m}),open&&h(Applicants,{job:j}))}
+
+function Dash(){const{user,emp,ready}=useContext(Auth);const[jobs,setJ]=useState(null),[apps,setA]=useState(null),[err,setErr]=useState('');
+const load=()=>{if(emp)sb.from('jobs').select('*,applications(count)').eq('employer_id',emp.id).order('created_at',{ascending:false}).then(({data,error})=>{setJ(data||[]);if(error)setErr(error.message)});
+if(user)sb.from('applications').select('id,status,created_at,jobs(title)').eq('applicant_id',user.id).order('created_at',{ascending:false}).then(({data,error})=>{setA(data||[]);if(error)setErr(error.message)})};
+useEffect(()=>{load()},[user&&user.id,emp&&emp.id]);
+if(!ready)return h('div',{className:'wrap'},h('p',{className:'pg'},'Loading…'));if(!user)return h(Gate);
+return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Dashboard'),h(Msg,{m:err}),
+emp&&h('div',null,h('h2',{style:{fontSize:20,margin:'16px 0 8px'}},'My listings · '+emp.business_name),h('p',{className:'m'},'Employer status: '+emp.verification_status),h('a',{className:'btn sm',href:'#/post-job'},'Post a job'),
+jobs===null?h('p',null,'Loading…'):jobs.length===0?h('p',{className:'m'},'No listings yet.'):jobs.map(j=>h(JobRow,{key:j.id,j,reload:load}))),
+h('h2',{style:{fontSize:20,margin:'24px 0 8px'}},'My applications'),apps===null?h('p',null,'Loading…'):apps.length===0?h('p',{className:'m'},'You have not applied to any jobs yet.'):apps.map(a=>h('div',{className:'box',key:a.id},h('strong',null,(a.jobs&&a.jobs.title)||'Job no longer public'),h('div',{className:'m'},'Status: '+a.status+' · Sent '+fd(a.created_at))))))}
+
+function Admin(){const{user,roles,ready}=useContext(Auth);const[tab,setTab]=useState('jobs'),[d,setD]=useState(null),[m,setM]=useState('');
+const isAdmin=roles.includes('admin');
+const load=()=>{const q=tab==='jobs'?sb.from('jobs').select('*,employers(business_name,verification_status)').eq('approval_status','pending').order('created_at'):tab==='emp'?sb.from('employers').select('*').order('created_at',{ascending:false}):sb.from('reported_jobs').select('*,jobs(id,title,status)').eq('status','open').order('created_at');
+q.then(({data,error})=>{setD(data||[]);if(error)setM(error.message)})};
+useEffect(()=>{setD(null);if(isAdmin)load()},[tab,isAdmin]);
+if(!ready)return h('div',{className:'wrap'},h('p',{className:'pg'},'Loading…'));if(!user)return h(Gate);
+if(!isAdmin)return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Admin area'),h('div',{className:'box',role:'alert'},'Restricted. This area needs an administrator account.'),h('a',{className:'btn ghost',href:'#/'},'Back to home')));
+const act=async p=>{setM('');const r=await p;r.error?setM(r.error.message):load()};
+const rev=(j,v)=>{let reason=null;if(v==='rejected'){reason=window.prompt('Reason for rejection (shown to the employer):');if(!reason)return}act(sb.from('jobs').update({approval_status:v,rejection_reason:reason}).eq('id',j.id))};
+return h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Admin'),h('div',{className:'seg',style:{maxWidth:360,marginBottom:12}},[['jobs','Pending jobs'],['emp','Employers'],['rep','Reports']].map(([k,l])=>h('button',{key:k,'aria-pressed':tab===k,onClick:()=>setTab(k)},l))),h(Msg,{m}),
+d===null?h('p',null,'Loading…'):d.length===0?h('p',{className:'m'},'Nothing to review.'):
+tab==='jobs'?d.map(j=>h('div',{className:'box',key:j.id},h('strong',null,j.title),h('div',{className:'m'},ename(j)+' · '+(j.area?AREAS[j.area].name:'Remote')+' · '+sal(j)),h('p',{style:{whiteSpace:'pre-wrap'}},j.description),h('div',{className:'r2'},h('button',{className:'btn sm',onClick:()=>rev(j,'approved')},'Approve'),h('button',{className:'btn sm ghost',onClick:()=>rev(j,'rejected')},'Reject')))):
+tab==='emp'?d.map(x=>h('div',{className:'box',key:x.id},h('strong',null,x.business_name),h('div',null,h('span',{className:'tag'},x.verification_status),x.is_sample&&h('span',{className:'tag w'},'Sample')),h('div',{className:'r2',style:{marginTop:8}},h('button',{className:'btn sm',onClick:()=>act(sb.from('employers').update({verification_status:'verified'}).eq('id',x.id))},'Verify'),h('button',{className:'btn sm ghost',onClick:()=>act(sb.from('employers').update({verification_status:'rejected'}).eq('id',x.id))},'Reject')))):
+d.map(x=>h('div',{className:'box',key:x.id},h('strong',null,(x.jobs&&x.jobs.title)||'Job'),h('div',{className:'m'},'Reason: '+x.reason+(x.details?' · '+x.details:'')),h('div',{className:'r2',style:{marginTop:8}},
+h('button',{className:'btn sm',onClick:()=>act((async()=>{const a=await sb.from('jobs').update({status:'closed'}).eq('id',x.job_id);if(a.error)return a;return sb.from('reported_jobs').update({status:'actioned'}).eq('id',x.id)})())},'Close job'),h('button',{className:'btn sm ghost',onClick:()=>act(sb.from('reported_jobs').update({status:'dismissed'}).eq('id',x.id))},'Dismiss'))))))}
+
+const NF=()=>h('div',{className:'wrap'},h('div',{className:'pg'},h('h1',null,'Page not found'),h('p',null,'That page does not exist.'),h('a',{className:'btn',href:'#/'},'Go home')));
+function App(){const hash=useHash(),[path,qs]=hash.slice(1).split('?'),p=new URLSearchParams(qs||'');let v;
+if(path==='/'||path===''||path==='/about')v=h(Home);else if(path==='/jobs')v=h(Jobs,{key:hash,p});else if(path.startsWith('/jobs/'))v=h(Detail,{id:path.slice(6),key:path});
+else if(path==='/post-job')v=h(Post);else if(path==='/signin')v=h(SignIn);else if(path==='/dashboard')v=h(Dash);else if(path==='/admin')v=h(Admin);
+else if(path==='/privacy')v=h(Stub,{t:'Privacy'});else if(path==='/terms')v=h(Stub,{t:'Terms'});else v=h(NF);
+return h(AuthProvider,null,h(Nav),v,path==='/jobs'?null:h(Footer))}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script></body></html>
